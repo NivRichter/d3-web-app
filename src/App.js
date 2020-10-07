@@ -15,7 +15,8 @@ import {
   Row,
   Col,
   Navbar,
-  Fade
+  Fade,
+  ListGroup
 } from "react-bootstrap";
 
 class App extends Component {
@@ -132,34 +133,37 @@ class App extends Component {
   render() {
     let diseaseName = this.state.value;
     return (
-      <body
-        style={{
-          backgroundImage:
-            "url(https://eskipaper.com/images/high-res-abstract-backgrounds-1.jpg)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover"
-        }}
-      >
-        <Container fluid>
+      // <body
+      //   style={{
+      //     backgroundImage:
+      //       "url(https://eskipaper.com/images/high-res-abstract-backgrounds-1.jpg)",
+      //     backgroundRepeat: "no-repeat",
+      //     backgroundSize: "cover"
+      //   }}
+      // >
+        <Container fluid 
+         >
           {/******************* Site Header  ********************/}
+          <Container fluid
+           //className="justify-content-center"
+           > 
 
-          <Row>
+          <Row  >
             <Col>
               <Row>
                 {/******************* LOGO  ********************/}
 
-                <Col xs={1.5}>
+                <Col xs={3} >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Ben-Gurion_University_of_the_Negev.svg/1200px-Ben-Gurion_University_of_the_Negev.svg.png"
-                    style={{ height: "200px", width: "200px" }}
+                    style={{ height: "200px", width: "200px", paddingTop:"10px" }}
                   />
                 </Col>
 
                 {/******************* Header and Search Bar  ********************/}
 
-                <Col xs={8}>
-                  <Row>
-                    <Col>
+                <Col xs={6} >
+                 
                     <h1
                       style={{
                         display: "flex",
@@ -172,28 +176,22 @@ class App extends Component {
                       Disease - Protein - Drug{" "}
                   </h1>
                       <br/>
-                    </Col>
-                  </Row>
-                  <Row>
-                  {/*<Form style={{ paddingLeft: "200px", paddingRight: "200px" }}>*/}
-                  {/*  <br />*/}
-                  {/*  <Form.Group controlId="formBasicRange">*/}
-                      {/* <Form.Control
-                        type="text"
-                        placeholder="Enter Disease Name"
-                        value={diseaseName}
-                        onChange={(e) => this.onInput(e)}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      /> */}
-
-                      <Col xs={3} style={{marginLeft:'300px'}}>
+               
+                  <Row   className="justify-content-center"     >
+                    <Col xs={5}
+                    style={{paddingRight:"0px"}}>
+ 
                       <Autocomplete
                         suggestions={this.state.diseases}
                         handler={this.handler}
                         hideChart={this.hideChart}
-                      />
-                      </Col>
-                    <Col xs={1} style={{marginLeft:'50px'}}>
+                      />               
+                      </Col >
+
+                      <Col xs={1}
+                                        style={{paddingLeft:"0px"}}
+                                                >
+                   
                       <Button
                           variant="primary"
                           className="button"
@@ -208,53 +206,53 @@ class App extends Component {
                         {" "}
                         SUBMIT <br />
                       </Button>
-                    </Col>
-                      <div
-                        style={{
-                          height: "auto",
-                          color: "white",
-                          fontSize: "19px",
-                          marginLeft: "200px",
-                          marginTop:"60px"
-                        }}
-                      >
-                        {this.state.view ? (
-                          <p>
-                            <span class="r-cl">
-                              <span></span>
-                            </span>
-                            <b>
-                              Disease<br></br>
-                            </b>
+                      </Col>
 
-                            <span class="c-p-cl">
-                              <span></span>
-                            </span>
-                            <b>
-                              Protein<br></br>
-                            </b>
-
-                            <span class="c-d-cl">
-                              <span></span>
-                            </span>
-                            <b>Drug</b>
-                          </p>
-                        ) : null}
-                      </div>
-                      {/* <Fade in={this.state.open}>
-        <div id="example-fade-text">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </Fade> */}
-                  {/*  </Form.Group>*/}
-
-                  {/*</Form>*/}
+                   
                   </Row>
-                </Col>
+                </Col >
+                                {/******************* Legend  ********************/}
 
-                {/******************* Legend  ********************/}
+                <Col xs={3}>
+                <Fade in={this.state.open}>
+
+                         <ListGroup
+                          style={{
+                            marginTop:"50px",
+                            height: "auto",
+                            color: "white",
+                            fontSize: "19px",
+                            // marginLeft: "200px",
+                            // marginTop:"60px"
+                          }}
+                        >
+                          {this.state.view ? 
+                            <p>                 
+                              <ListGroup.Item>
+
+                              <span class="r-cl">
+                                <span></span>
+                              </span>
+                                Disease<br></br>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                              <span class="c-p-cl">
+                                <span></span>
+                              </span>
+                              
+                                Protein<br></br>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                              <span class="c-d-cl">
+                                <span></span>
+                              </span>
+                             Drug</ListGroup.Item>
+                            </p>
+                           : null}
+                        </ListGroup> 
+                        </Fade>
+                      </Col>
+
               </Row>
             </Col>
           </Row>
@@ -262,6 +260,7 @@ class App extends Component {
           {/******************* END OF Header  ********************/}
 
           {/*******************Graph Chart ********************/}
+          </Container>
 
           <Row>
             <Col>
@@ -282,7 +281,7 @@ class App extends Component {
 
           {/*******************END OF Graph Chart ********************/}
         </Container>
-      </body>
+      // </body>
     );
   }
 }
