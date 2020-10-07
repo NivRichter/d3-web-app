@@ -107,7 +107,7 @@ class Graph extends Component {
 
                 function getNodeColor(node) {
                 return node.type === 'disease' ? 'red' :
-                node.type === 'protein' ? 'blue' : 'green'
+                node.type === 'protein' ? '#1589FF' : 'green'
                 }
 
                 function getProteins(nodesList) {
@@ -129,7 +129,7 @@ class Graph extends Component {
                     .on("mouseover", function (d) {
                         d3.select(this).style("fill", "yellow")
                     }).on("mouseout", function (d) {
-                        d3.select(this).style("fill", "blue")
+                        d3.select(this).style("fill", "#1589FF")
                     })
                     
 

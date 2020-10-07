@@ -5,7 +5,8 @@ import {
   ListGroupItem,
   Row,
   Col,
-  Form
+  Form,
+  Fade
 
 } from "react-bootstrap";
 
@@ -110,6 +111,7 @@ class Autocomplete extends Component {
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
+          <Fade in={this.state.showSuggestions}>
           <ListGroup class="suggestions">
             {filteredSuggestions.map((suggestion, index) => {
               let className;
@@ -126,6 +128,7 @@ class Autocomplete extends Component {
               );
             })}
           </ListGroup>
+          </Fade>
         );
       } else {
         suggestionsListComponent = (

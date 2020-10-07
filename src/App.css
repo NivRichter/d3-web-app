@@ -26,7 +26,7 @@ span:before {
   -moz-border-radius: 7.5px;
   -webkit-border-radius: 7.5px;
   border-radius: 7.5px;
-  background-color: blue;
+  background-color: #1589FF;
 }
 
 .c-d-cl::before {

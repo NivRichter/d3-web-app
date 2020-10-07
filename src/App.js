@@ -16,7 +16,8 @@ import {
   Col,
   Navbar,
   Fade,
-  ListGroup
+  ListGroup,
+  Table
 } from "react-bootstrap";
 
 class App extends Component {
@@ -25,7 +26,6 @@ class App extends Component {
     this.handler = this.handler.bind(this);
     this.hideChart = this.hideChart.bind(this);
     this.state = {
-      userName: "Barak",
       value: "",
       disease: "",
       jsonData: {},
@@ -142,6 +142,7 @@ class App extends Component {
       //   }}
       // >
         <Container fluid 
+        style={ {backgroundImage: "url(https://eskipaper.com/images/high-res-abstract-backgrounds-1.jpg)"}}
          >
           {/******************* Site Header  ********************/}
           <Container fluid
@@ -156,7 +157,7 @@ class App extends Component {
                 <Col xs={3} >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Ben-Gurion_University_of_the_Negev.svg/1200px-Ben-Gurion_University_of_the_Negev.svg.png"
-                    style={{ height: "200px", width: "200px", paddingTop:"10px" }}
+                    style={{ height:"150px", width: "150px", paddingTop:"10px" }}
                   />
                 </Col>
 
@@ -216,40 +217,54 @@ class App extends Component {
                 <Col xs={3}>
                 <Fade in={this.state.open}>
 
-                         <ListGroup
+                         <Table
                           style={{
                             marginTop:"50px",
                             height: "auto",
+                            width:"200px",
                             color: "white",
                             fontSize: "19px",
+                           
+                            display: "flex",
+                            justifyContent: "center",
+
+
+                            //background: "rgba(255,255,255,0.25)"
+
                             // marginLeft: "200px",
                             // marginTop:"60px"
                           }}
                         >
+
                           {this.state.view ? 
-                            <p>                 
-                              <ListGroup.Item>
+                            <tbody>
+
+
+                              <tr>
 
                               <span class="r-cl">
                                 <span></span>
                               </span>
                                 Disease<br></br>
-                              </ListGroup.Item>
-                              <ListGroup.Item>
+                              </tr>
+                              <tr>
                               <span class="c-p-cl">
                                 <span></span>
                               </span>
                               
                                 Protein<br></br>
-                              </ListGroup.Item>
-                              <ListGroup.Item>
+                              </tr>
+                              <tr>
                               <span class="c-d-cl">
                                 <span></span>
                               </span>
-                             Drug</ListGroup.Item>
-                            </p>
+                             Drug
+                             </tr>
+                             </tbody>
+
                            : null}
-                        </ListGroup> 
+
+                        </Table> 
                         </Fade>
                       </Col>
 
@@ -262,8 +277,8 @@ class App extends Component {
           {/*******************Graph Chart ********************/}
           </Container>
 
-          <Row>
-            <Col>
+          <Row style={{marginTop:"20px", width:"100%"}}>
+            <Col style={{width:"100%"}}>
               <Fade in={this.state.open}>
                 <div id="example-fade-text">
                   {
@@ -278,6 +293,7 @@ class App extends Component {
               </Fade>
             </Col>
           </Row>
+
 
           {/*******************END OF Graph Chart ********************/}
         </Container>
