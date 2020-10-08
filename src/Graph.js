@@ -27,7 +27,7 @@ class Graph extends Component {
         return (
                 <Row >
                     <Col >
-                        <div  id="dataviz_graph">
+                        <div  id="dataviz_graph" style={{width:"100%",height:"1080px"}}>
                             { <svg className = 'GraphSvg' id="graph"
                                 style={{ backgroundColor: 'white',  height: '1080px', width: '100%',
                                 border: '3px solid green' }}
@@ -75,33 +75,16 @@ class Graph extends Component {
                 var width = window.innerWidth //window.innerWidth
                 var height = window.innerHeight + 400 //window.innerHeight
 
-                // var svg = d3.select("#dataviz_graph").append("svg")
-                // .attr("width",  1000)
-                // .attr("height",  1000)
-                // .call(d3.zoom().on("zoom", function () {
-                //     svg.attr("transform", d3.event.transform)
-                //  }))
-                var svg = d3.select("#dataviz_graph").select("svg").
-                append("g")//.attr('viewbox',[0,0,width,height])
-                  
-                svg.call(d3.zoom().on("zoom", function () {
-                        svg.attr("transform", d3.event.transform)
-                     }))
+  
+                var svg = d3.select("#dataviz_graph").select("svg")
+                .append("g")
 
-               /*
-                svg.call(d3.zoom()
-                    //.extent([[0, 0], [width, height]])
-                    .scaleExtent([1, 8])
-                    .on("zoom", zoomed));
-                */
-/*
-                function zoomed({transform}) {
-                    nodeElementsProteins.attr("transform", d => `translate(${transform.apply(d)})`);
-                    nodeElementsDiseases.attr("transform", d => `translate(${transform.apply(d)})`);    
-                    nodeElementsDrugs.attr("transform", d => `translate(${transform.apply(d)})`);
-                }
-                    
-                */
+                var zoom = d3.select("#dataviz_graph").call(d3.zoom().on("zoom", function () {
+                    svg.attr("transform", d3.event.transform)
+                 }))
+                  
+              
+
                 var linkForce = d3
                 .forceLink()
                 .id(function (link) { return link.id })
