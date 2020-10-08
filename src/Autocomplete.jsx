@@ -144,7 +144,7 @@ class Autocomplete extends Component {
       >
         <Form>
         <Form.Group controlId="formBasicDisease">
-           <Form.Control type="text" placeholder="Enter disesae name" 
+           <Form.Control type="text" placeholder="Enter disease name" 
             type="text"
             onChange={onChange}
             onKeyDown={onKeyDown}
