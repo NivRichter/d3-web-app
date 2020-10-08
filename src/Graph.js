@@ -27,13 +27,19 @@ class Graph extends Component {
         return (
                 <Row >
                     <Col >
-                        <svg className = 'GraphSvg' 
-                           style={{ backgroundColor: 'white',  height: '1080px', width: '100%', overflow: 'auto',
-                           border: '3px solid green' }}
-                            ref='canvas'>
-                    
+                        <div  id="dataviz_graph">
+                            { <svg className = 'GraphSvg' id="graph"
+                                style={{ backgroundColor: 'white',  height: '1080px', width: '100%',
+                                border: '3px solid green' }}
+                                    ref='canvas'>
+                                        <g id ='graphCart'>
 
-                        </svg>
+                                        </g>
+                            
+
+                            </svg> }
+                        </div>
+                      
                     </Col>
                 </Row>
    
@@ -69,9 +75,19 @@ class Graph extends Component {
                 var width = window.innerWidth //window.innerWidth
                 var height = window.innerHeight + 400 //window.innerHeight
 
+                // var svg = d3.select("#dataviz_graph").append("svg")
+                // .attr("width",  1000)
+                // .attr("height",  1000)
+                // .call(d3.zoom().on("zoom", function () {
+                //     svg.attr("transform", d3.event.transform)
+                //  }))
+                var svg = d3.select("#dataviz_graph").select("svg").
+                append("g")//.attr('viewbox',[0,0,width,height])
+                  
+                svg.call(d3.zoom().on("zoom", function () {
+                        svg.attr("transform", d3.event.transform)
+                     }))
 
-                var svg = d3.select(this.refs.canvas).attr('viewbox',[0,0,width,height])
-            
                /*
                 svg.call(d3.zoom()
                     //.extent([[0, 0], [width, height]])
