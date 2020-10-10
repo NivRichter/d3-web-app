@@ -15,7 +15,8 @@ Includes web crawling for gathering medical information for the benefit of impro
 ## Live Demo: 
 <p>
   https://nivrichter.github.io/d3-web-app-demo/
-  </p>
+</p>
+
 ![](https://media.giphy.com/media/SjcGbykvoufYJBXWOf/giphy.gif)
 
 ## Technologies
