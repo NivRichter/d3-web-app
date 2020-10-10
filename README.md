@@ -1,6 +1,6 @@
 
-# Network Graph Web App
-## Designed for making Biomedical research easier
+# Diseases - Proteins - Drugs Network Graph Web App
+## Designed for Making Biomedical Research Easier
 
 
 ## Table of contents
