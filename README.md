@@ -9,10 +9,10 @@
 * [Setup](#setup)
 
 ## General-Info
-This project is made to help BGU researches to analyze and visualize information graphically for artificial intelligence tasks in the medical field.
-Includes web crawling for gathering medical information for the benefit of improving ML models.
+This project is made to help BGU researchers to analyze and visualize information graphically for artificial intelligence tasks in the medical field, for the benefit of improving ML models.
 
 ## Live Demo: 
+Just enter the link below and enter a disease name. A network graph will show up. All protein who became dysfunctional by the disease will show up, with a link connecting them to possible drugs.
 <p>
   https://nivrichter.github.io/d3-web-app-demo/
 </p>
