@@ -9,7 +9,7 @@
 * [Setup](#setup)
 
 ## General-Info
-This project is made to help BGU researches while doing analyzing and visualizing information graphically for artificial intelligence tasks in the medical field.
+This project is made to help BGU researches to analyze and visualize information graphically for artificial intelligence tasks in the medical field.
 Includes web crawling for gathering medical information for the benefit of improving ML models.
 
 ## Live Demo: 
