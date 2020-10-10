@@ -13,7 +13,9 @@ This project is made to help BGU researches while doing analyzing and visualizin
 Includes web crawling for gathering medical information for the benefit of improving ML models.
 
 ## Live Demo: 
-https://nivrichter.github.io/d3-web-app-demo/
+<p>
+  https://nivrichter.github.io/d3-web-app-demo/
+  </p>
 ![](https://media.giphy.com/media/SjcGbykvoufYJBXWOf/giphy.gif)
 
 ## Technologies
