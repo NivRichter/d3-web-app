@@ -2,11 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import {
   ListGroup,
-  ListGroupItem,
-  Row,
-  Col,
   Form,
-  Fade
 
 } from "react-bootstrap";
 
@@ -111,8 +107,7 @@ class Autocomplete extends Component {
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
-          <Fade in={this.state.showSuggestions}>
-          <ListGroup class="suggestions">
+          <ListGroup className="suggestions">
             {filteredSuggestions.map((suggestion, index) => {
               let className;
 
@@ -128,11 +123,10 @@ class Autocomplete extends Component {
               );
             })}
           </ListGroup>
-          </Fade>
         );
       } else {
         suggestionsListComponent = (
-          <ListGroup class="no-suggestions">
+          <ListGroup className="no-suggestions">
             <ListGroup.Item>No suggestions, you're on your own!</ListGroup.Item>
           </ListGroup>
         );
@@ -144,7 +138,7 @@ class Autocomplete extends Component {
       >
         <Form>
         <Form.Group controlId="formBasicDisease">
-           <Form.Control type="text" placeholder="Enter disease name" 
+           <Form.Control type="text" placeholder="Enter disease name (i.e COVID-19)" 
             type="text"
             onChange={onChange}
             onKeyDown={onKeyDown}

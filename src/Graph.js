@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as d3 from 'd3'
-import { Container,Card } from "react-bootstrap";
-import { Row, Col, Navbar } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 
 class Graph extends Component {
     constructor(props) {
@@ -29,9 +28,7 @@ class Graph extends Component {
                     <Col >
                         <div  id="dataviz_graph" style={{width:"100%",height:"1080px"}}>
                             { <svg className = 'GraphSvg' id="graph"
-                                style={{ backgroundColor: 'white',  height: '1080px', width: '100%',
-                                border: '3px solid green' }}
-                                    ref='canvas'>
+                                style={{ backgroundColor: 'white',  height: '1080px', width: '100%' }}>
                                         <g id ='graphCart'>
 
                                         </g>
@@ -68,7 +65,8 @@ class Graph extends Component {
                             let drugName = drugs[prots[protein]][drug]
                             nodes.push({id:`${drugName}${i}`, name:drugName, type:'drug'})
                             links.push({target: `${drugName}${i}`, source: prots[protein]})
-                            i++}
+                            i++
+                            }
 
                         }
                     }
@@ -79,7 +77,7 @@ class Graph extends Component {
                 var svg = d3.select("#dataviz_graph").select("svg")
                 .append("g")
 
-                var zoom = d3.select("#dataviz_graph").call(d3.zoom().on("zoom", function () {
+                d3.select("#dataviz_graph").call(d3.zoom().on("zoom", function () {
                     svg.attr("transform", d3.event.transform)
                  }))
                   
@@ -137,8 +135,8 @@ class Graph extends Component {
                     .selectAll("rect")
                     .data(getDiseases(nodes))
                     .enter().append("rect")
-                    .attr("width", 20)
-                    .attr("height", 20)
+                    .attr("width", 15)
+                    .attr("height", 15)
                     .attr("fill", getNodeColor)
                     .on("mouseover", function (d) {
                         d3.select(this).style("fill", "yellow")
@@ -198,9 +196,7 @@ class Graph extends Component {
 
                 simulation.force('link').links(links);
                 }
-                else{
-                    console.log(` disease ${diseaseName} not found` )
-                }
+
             }
         }
     
