@@ -12,7 +12,7 @@
 This project is made to help BGU researchers to analyze and visualize information graphically for artificial intelligence tasks in the medical field, for the benefit of improving ML models.
 
 ## Live Demo: 
-Just enter the link below and enter a disease name. A network graph will show up. All protein who became dysfunctional by the disease will show up, with a link connecting them to possible drugs.
+Just enter the link below and enter a disease name. A network graph will show up. All proteins that the disease affect them are linked to the disease, and each protein is linked to all availbe drugs. 
 <p>
   https://nivrichter.github.io/d3-web-app-demo/
 </p>
