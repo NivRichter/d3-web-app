@@ -1,3 +1,8 @@
+
+# Network Graph Web App
+## Designed for making Biomedical research easier
+### Built by D3 library
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
