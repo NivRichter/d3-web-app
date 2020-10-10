@@ -1,7 +1,8 @@
 
 # Network Graph Web App
 ## Designed for making Biomedical research easier
-### Built by D3 library
+
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -10,6 +11,10 @@
 ## General-Info
 This project is made to help BGU researches while doing analyzing and visualizing information graphically for artificial intelligence tasks in the medical field.
 Includes web crawling for gathering medical information for the benefit of improving ML models.
+
+## Live Demo: 
+https://nivrichter.github.io/d3-web-app-demo/
+<iframe src="https://giphy.com/embed/SjcGbykvoufYJBXWOf" width="480" height="292" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/SjcGbykvoufYJBXWOf">via GIPHY</a></p>
 
 ## Technologies
 D3js, React, Bootsrap 4, JS, Python-pandas.
