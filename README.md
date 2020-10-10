@@ -14,7 +14,7 @@ Includes web crawling for gathering medical information for the benefit of impro
 
 ## Live Demo: 
 https://nivrichter.github.io/d3-web-app-demo/
-<iframe src="https://giphy.com/embed/SjcGbykvoufYJBXWOf" width="480" height="292" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/SjcGbykvoufYJBXWOf">via GIPHY</a></p>
+![](https://media.giphy.com/media/SjcGbykvoufYJBXWOf/giphy.gif)
 
 ## Technologies
 D3js, React, Bootsrap 4, JS, Python-pandas.
