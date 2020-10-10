@@ -7,11 +7,11 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 
-# general-info
+## General-Info
 This project is made to help BGU researches while doing analyzing and visualizing information graphically for artificial intelligence tasks in the medical field.
 Includes web crawling for gathering medical information for the benefit of improving ML models.
 
-### Technologies
+## Technologies
 D3js, React, Bootsrap 4, JS, Python-pandas.
 
 # Setup
