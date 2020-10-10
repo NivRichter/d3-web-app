@@ -1,5 +1,5 @@
 
-# Diseases - Proteins - Drugs Network Graph Web App
+# Diseases & Proteins Graph - Web App
 ## Designed for Making Biomedical Research Easier
 
 
