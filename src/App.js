@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import Graph from "./Graph.js";
 import Autocomplete from "./Autocomplete.jsx";
+import ClipLoader from "react-spinners/ClipLoader";
 
+
+import ReactGA from 'react-ga';
 
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,35 +20,34 @@ import {
   Table,
   ListGroup,
 } from "react-bootstrap";
+import { autoType } from "d3";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.AutoCompleteHandler = this.AutoCompleteHandler.bind(this);
-    this.hideChart = this.hideChart.bind(this);
+    this.showChart = this.showChart.bind(this);
     this.state = {
       value: "",
       disease: "",
+      diseases: [],
       jsonData: {},
       jsonDrugs: {},
       drugs: [],
-      view: false,
       open: false
     };
+
+      const trackingId = "UA-180348020-1"; // Replace with your Google Analytics tracking ID
+      ReactGA.initialize(trackingId, {
+        debug: true
+      });
+      ReactGA.pageview(window.location.pathname + window.location.search);
+
+
+    
   }
 
-  hideChart() {
-    this.setState({
-      view: false,
-      open: false
-    });
-  }
-  AutoCompleteHandler(e, val) {
-    this.setState({
-      disease: val,
-      value: val
-    });
-  }
+
   componentDidMount() {
     console.log("mounting APP");
     let url = "https://api.jsonbin.io/b/5f74bd117243cd7e824742f6";
@@ -82,13 +84,45 @@ class App extends Component {
       });
   }
 
+  sendToGA = () => {
+    ReactGA.event({
+      category: 'Submit',
+      action: 'Searched Disease',
+      label: this.state.value
+    });
+  }
+
+  showChart =(open) => {
+    if(open) {
+        this.getData();
+        this.sendToGA();
+   
+    }
+      this.setState({
+        open: open
+      });
+     
+    }
+   
+  
+  AutoCompleteHandler = (val,showCartStatus) => {
+      this.setState({
+          disease: val,
+          value: val,
+        },
+        function() {
+          this.showChart(showCartStatus)
+        }
+      );
+  }
+
   getDiseases(data) {
     var diseases = [];
     for (var d in data) {
       diseases.push(d);
     }
 
-    this.setState((prevState) => ({
+    this.setState( ({
       diseases: diseases
     }));
   }
@@ -98,13 +132,17 @@ class App extends Component {
 
     this.setState({
       value: e.target.value,
-      view: false,
-      open: false
-    });
-    console.log("key");
+    }, this.showChart(false));
   }
 
+  onEnter = (e)=> {
+    e.preventDefault();
+    this.showChart(true);
+  }
+
+
   getData() {
+    // console.log(`get data state: ${this.state}`)
     let proteins = this.state.jsonData[this.state.value];
     var drugs = {};
     for (var prot in proteins) {
@@ -115,17 +153,9 @@ class App extends Component {
       disease: this.state.value,
       drugs: drugs
     }));
+
   }
 
-  onEnter(e) {
-    console.log("enter");
-    this.getData();
-    e.preventDefault();
-    this.setState((prevState) => ({
-      view: true,
-      open: true
-    }));
-  }
 
   render() {
     return (
@@ -160,15 +190,38 @@ class App extends Component {
                   </h1>
                       <br/>
                
-                  <Row   className="justify-content-center"     >
-                    <Col md={5} xs={8}
+                 { 
+                 this.state.diseases.length === 0  ? 
+                 <Row>
+                   <Col  xs = {12} md = {12} >
+                        <div style={{ width: "100px", display: "flex", alignItems: "center", marginLeft:'auto', marginRight:'auto'}}>
+                        <Fade in={true}>
+                          <ClipLoader
+                              size={100 }
+                              color={"#123abc"}
+                              loading={true}
+                              
+                              
+                            />
+                            </Fade>
+                          </div>
+                   </Col>
+                 </Row>
+                
+                 :
+ <Fade in={true}>
+                   <Row   className="justify-content-center"     >
+                   
+                      <Col md={5} xs={8}
                     style={{paddingRight:"0px"}}>
  
-                      <Autocomplete
+                      
+                         <Autocomplete
                         suggestions={this.state.diseases}
                         handler={this.AutoCompleteHandler}
-                        hideChart={this.hideChart}
-                      />               
+                        showChart={this.showChart}
+
+                      />        
                       </Col >
 
                       <Col md={1} xs={3}
@@ -179,25 +232,25 @@ class App extends Component {
                           variant="primary"
                           className="button"
                           onClick={(e) => {
-                            this.getData();
                             this.onEnter(e);
-                            //  this.setState( prevState=> ({open: !this.state.open, view: true}) )
                           }}
                           aria-controls="example-fade-text"
                           aria-expanded={this.state.open}
                       >
-                        {" "}
                         SUBMIT <br />
                       </Button>
                       </Col>
 
                    
                   </Row>
+                  
+                  </Fade>
+                  }
                 </Col >
                 {/******************* Legend  ********************/}
 
                 <Col xs={3}>
-                <Fade in={this.state.open}>
+                <Fade in={ this.state.diseases.length > 0}>
 
                          <Table
                           style={{
@@ -211,7 +264,7 @@ class App extends Component {
                                   }}>
 
                             {
-                              this.state.view ? 
+                              this.state.open ? 
                                     <tbody>
                                       <tr >
                                         <td className="r-cl" >Disease</td>
@@ -222,6 +275,8 @@ class App extends Component {
                                       <tr>
                                         <td  className="c-d-cl">Drug</td>
                                       </tr>
+
+                                      <tr><td><h6>Use mouse\touch to Zoom & Pan</h6></td></tr>
                                     </tbody>
                                         : null
                            }
@@ -246,6 +301,7 @@ class App extends Component {
                       diseaseName={this.state.disease}
                       proteins={this.state.proteins}
                       drugs={this.state.drugs}
+                      paintGraph={this.state.open}
                     />
                   }
                 </div>
