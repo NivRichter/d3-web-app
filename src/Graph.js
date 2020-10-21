@@ -7,13 +7,15 @@ class Graph extends Component {
         super(props);
         this.state = {
             jsonData:{},
-            diseaseName:''
+            diseaseName:'',
         }
       }
 
       componentDidUpdate(){
 
-        this.makeGraph(this.props.jsonData, this.props.diseaseName, this.props.proteins, this.props.drugs);
+        if(this.props.paintGraph) {
+            this.makeGraph(this.props.jsonData, this.props.diseaseName, this.props.proteins, this.props.drugs);
+        }
 
       }
 
@@ -48,7 +50,7 @@ class Graph extends Component {
     makeGraph(data, diseaseName, prots,drugs) {
        // console.log('disease :' + diseaseName + ' prots: ' + prots)
                 if(data.hasOwnProperty(diseaseName)) { 
-                    console.log('starting to paint graph...')
+                    console.log(`starting to ${diseaseName} paint  graph...`)
                     let nodes = []
                     let links = []
                     let i = 1
