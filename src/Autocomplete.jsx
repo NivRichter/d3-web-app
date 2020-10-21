@@ -31,38 +31,54 @@ class Autocomplete extends Component {
   }
 
   onChange = (e) => {
-    this.props.hideChart();
+    e.preventDefault();
+
+    this.props.showChart(false);
     const { suggestions } = this.props;
     const userInput = e.currentTarget.value;
+    if (suggestions.length === 0) {
+      this.setState({
+        activeSuggestion: 1,
+        filteredSuggestions:['Loading...'],
+        showSuggestions: true,
+        userInput: e.currentTarget.value
+      });
+    }
+    else {
+      // Filter our suggestions that don't contain the user's input
+      const filteredSuggestions = suggestions.filter(
+        (suggestion) =>
+          suggestion.toLowerCase().indexOf(userInput.toLowerCase()) === 0
+      );
 
-    // Filter our suggestions that don't contain the user's input
-    const filteredSuggestions = suggestions.filter(
-      (suggestion) =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) === 0
-    );
-
-    this.setState({
-      activeSuggestion: 0,
-      filteredSuggestions,
-      showSuggestions: true,
-      userInput: e.currentTarget.value
-    });
+      this.setState({
+        activeSuggestion: 0,
+        filteredSuggestions,
+        showSuggestions: true,
+        userInput: e.currentTarget.value
+      });
+    }
+ 
   };
 
   onClick = (e) => {
+    e.preventDefault();
+
     this.setState({
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
       userInput: e.currentTarget.innerText
-    });
+      },
+      function(){
+        this.props.handler(this.state.userInput);
+      }
+    );
 
-    this.props.handler(e, e.currentTarget.innerText);
   };
 
   onKeyDown = (e) => {
     const { activeSuggestion, filteredSuggestions } = this.state;
-
     // User pressed the enter key
     if (e.keyCode === 13) {
       this.setState({
@@ -87,13 +103,33 @@ class Autocomplete extends Component {
 
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
+
   };
+
+  enterKeyPressed = (e) => {
+    e.preventDefault()
+    console.log('key preseed')
+    const { activeSuggestion, filteredSuggestions } = this.state;
+
+    this.setState({
+      activeSuggestion: 0,
+      showSuggestions: false,
+      userInput: filteredSuggestions[activeSuggestion]
+    });
+    console.log(`userinput in autocomplete ${this.state.userInput}`)
+    this.props.handler(this.state.userInput,true);
+    this.props.showChart(true);
+
+
+  };
+
 
   render() {
     const {
       onChange,
       onClick,
       onKeyDown,
+      enterKeyPressed,
       state: {
         activeSuggestion,
         filteredSuggestions,
@@ -133,11 +169,13 @@ class Autocomplete extends Component {
       }
     }
 
+  
     return (
       <Fragment                             
       >
-        <Form>
-        <Form.Group controlId="formBasicDisease">
+        <Form                         onSubmit={enterKeyPressed }
+    >
+        <Form.Group controlId="formBasicDisease"             >
            <Form.Control type="text" placeholder="Enter disease name (i.e COVID-19)" 
             type="text"
             onChange={onChange}
